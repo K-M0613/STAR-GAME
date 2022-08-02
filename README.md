@@ -10,19 +10,25 @@
 
 ### ターゲットユーザ
 ・ゲーム好きの方
+
 ・インドアな方
+
 ・ゲームに関してあまり知識のない方
 
 ### 主な利用シーン
 ・気になるゲームのレビュー閲覧
+
 ・やりたいゲームを見つけるとき
+
 ・グッズの使用感を知りたいとき
 
 ## 設計書
 ###ER図
 https://app.diagrams.net/#G1uQ6vV8o2Pp6gAhCOEMv27xdnuVIvp0_W
+
 ###テーブル定義書
 https://docs.google.com/spreadsheets/d/1a08bTHEuCBqU_enzFOkZ7FOnRax4OgL6JWLDwa8iuq0/edit#gid=485636062
+
 ###詳細設計
 https://docs.google.com/spreadsheets/d/1Bx3PBLP-vzfmSuxU1IzOgZ7DShOonK76Qj9Yr3vDGeY/edit#gid=549108681
 
