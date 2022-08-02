@@ -25,7 +25,7 @@
 ## 設計書
 ### ER図
 
-https://app.diagrams.net/#G1uQ6vV8o2Pp6gAhCOEMv27xdnuVIvp0_W
+![Untitled Diagram](https://app.diagrams.net/#G1uQ6vV8o2Pp6gAhCOEMv27xdnuVIvp0_W)
 
 ### テーブル定義書
 
