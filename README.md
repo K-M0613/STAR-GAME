@@ -23,13 +23,16 @@
 ・グッズの使用感を知りたいとき
 
 ## 設計書
-###ER図
+### ER図
+
 https://app.diagrams.net/#G1uQ6vV8o2Pp6gAhCOEMv27xdnuVIvp0_W
 
-###テーブル定義書
+### テーブル定義書
+
 https://docs.google.com/spreadsheets/d/1a08bTHEuCBqU_enzFOkZ7FOnRax4OgL6JWLDwa8iuq0/edit#gid=485636062
 
-###詳細設計
+### 詳細設計
+
 https://docs.google.com/spreadsheets/d/1Bx3PBLP-vzfmSuxU1IzOgZ7DShOonK76Qj9Yr3vDGeY/edit#gid=549108681
 
 ## 開発環境
