@@ -52,4 +52,5 @@ https://docs.google.com/spreadsheets/d/1Bx3PBLP-vzfmSuxU1IzOgZ7DShOonK76Qj9Yr3vD
 - API：Rakuten Books Game Search API
 
 ## 使用素材
+使用検討中
 
