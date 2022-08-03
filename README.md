@@ -32,7 +32,8 @@
 
 ## 設計書
 ### ER図
-![Untitled Diagram drawio](https://user-images.githubusercontent.com/106648206/182280534-ff5d4ccd-0159-4e24-b59e-94b93b93b79b.png)
+![Untitled Diagram drawio (1)](https://user-images.githubusercontent.com/106648206/182537453-72341415-9be5-4024-abd6-a0fa58204d7f.png)
+
 
 
 ### テーブル定義書
