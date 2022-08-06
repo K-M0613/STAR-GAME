@@ -14,15 +14,15 @@ Rails.application.routes.draw do
    root to: "public/homes#top"
    get "about" => "public/homes#about", as: "about"
    
-   resources :posts, only[:new, :index, :search, :create, :destroy]
+   resources :posts, only: [:new, :index, :search, :create, :destroy]
    
    get 'users/unsubscribe' => 'public/users#unsubscribe', as: 'unsubscribe'
    patch 'users/withdraw' => 'public/users#withdraw', as: 'withdraw'
    get 'users/my_page' => 'public/users#show', as: 'my_page'
    
-   resources :games, only[:search, :show]
+   resources :games, only: [:search, :show]
    
-   resources :book_marks, only[:index, :create, :destroy]
+   resources :book_marks, only: [:index, :create, :destroy]
    
   namespace :admin do
     root to: "admin/homes#top"
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get 'users/show' => 'users#show', as: 'user'
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
-    resources :posts, only[:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy]
   end
   
   
