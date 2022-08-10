@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(version: 2022_08_06_114839) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "game_id", null: false
+    t.text "title", null: false
     t.text "purpose", null: false
-    t.string "star", null: false
-    t.string "commemt", null: false
+    t.float "star", null: false
+    t.string "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

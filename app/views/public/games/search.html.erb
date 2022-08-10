@@ -1,0 +1,26 @@
+<h2>検索結果</h2>
+<% if @games.present? %>
+  <% @games.each do |game| %>
+  <% pp game %>
+    <table class="table table-hover" style="table-layout:fixed;width:100%;">
+      <thead>
+        <tr>
+          <th class="col-xs-2">タイトル</th>
+          <th class="col-xs-3">発売元</th>
+          <th class="col-xs-3">ハードウェア</th>
+          <th class="col-xs-3">発売日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="word-wrap:break-word;">
+            <%= game['title'] %>
+          </td>
+          <td><%= game['label'] %></td>
+          <td><%= game['hardware'] %></td>
+          <td><%= game['salesDate'] %></td>
+        </tr>
+      </tbody>
+    </table>
+   <% end %>
+  <% end %>

@@ -1,2 +1,21 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container mt-5 px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3 border border-3 border-primary rounded">
+      <h2>PROFILE</h2>
+      <%= render 'info', user: @user %>
+    </div>
+    <div class="offset-3">
+     <h3>商品を探す</h3>
+     <div class='content'>
+       <div id="search-box">
+         <%= form_tag(games_search_path, method: :get) do %>
+           <%= text_field_tag :game, "",  id: "game_search", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%>
+           <%= submit_tag "検索", class: 'btn btn-primary' %>
+         <% end %>
+       </div>
+    </div>
+    <div class="offset-3">
+        <%= link_to "投稿", new_post_path %>
+    </div>
+  </div>
+</div>
