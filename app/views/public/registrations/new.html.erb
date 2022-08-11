@@ -20,7 +20,7 @@
         <tr>
           <td>性別</td>
           <td>
-            <%= f.select :sex, ['男', '女'], {include_blank: '選択ボックス'} %>
+            <%= f.select :gender, ['男', '女'], {include_blank: '選択ボックス'} %>
           </td>
         </tr>
         <tr>
@@ -34,6 +34,9 @@
             <% if @minimum_password_length %>
               <em>(<%= @minimum_password_length %>文字以上)</em>
             <% end %>
+          </td>
+          <td>
+            <%= f.password_field :password, autocomplete: "new-password" %>
           </td>
         </tr>
         <tr>
@@ -51,7 +54,7 @@
       </div>
     </div>
    <% end %>
-    <h5 class="bg-light text-dark text-center" style="wigth:30%;">すでに登録済みの方</h5>
+    <h5 class="bg-light text-dark text-center" style="wigth: 10%;">すでに登録済みの方</h5>
 
     <h6>
       <%= link_to "こちら", new_user_session_path %> からログインしてください

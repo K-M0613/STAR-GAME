@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 border border-3 border-info rounded">
+      <h1>投稿詳細</h1>
+      <table class="table">
+        <tr>
+          <th><%= @user.nickname %></th>
+        </tr>
+        <tr>
+          <th><%= @post.title %></th>
+        </tr>
+        <tr>
+          <th><%= @post.purpose %></th>
+        </tr>
+        <tr>
+          <th><%= @post.comment %></th>
+        </tr>
+        <tr>
+          <th>
+            <div id="star-rate<%= @post.id %>"></div>
+            <script>
+              $('#star-rate<%= @post.id %>').empty();
+              $('#star-rate<%= @post.id %>').raty({
+                size :36,
+                starOff: '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= @post.star %>
+              })
+            </script>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <% @post.tags.each do |tag| %>
+              <span><%= tag.name %></span>
+            <% end %>
+          </th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

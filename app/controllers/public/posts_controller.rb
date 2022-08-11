@@ -11,24 +11,32 @@ class Public::PostsController < ApplicationController
     if @post.save
       # binding.pry
       # @post.save_tag(tag_list)
-      redirect_to post_path(@post), notice: '投稿完了しました:)'
+      redirect_to posts_path, notice: '投稿完了しました:)'
     else
       render :new
     end
   end
 
   def index
+    @user = User.find_by(params[:nickname])
     @tag_list = Tag.all
-    @posts = Post.all
+    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
     @post = current_user.post.new
   end
 
   def show
+    @user = User.find_by(params[:nickname])
     @post = Post.find(params[:id])
     @post_tags = @post.tags
   end
 
   def search
+    if params[:keyword].present?
+      @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%")
+      @keyword = params[:keyword]
+    else
+      @posts = Post.all
+    end
   end
 
   def destroy

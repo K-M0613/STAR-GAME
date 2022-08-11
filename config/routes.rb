@@ -4,11 +4,10 @@ Rails.application.routes.draw do
    }
 
    devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
    end
 
-   get 'users/edit' => 'public/users#edit', as: 'edit_user'
-   get 'users' => 'public/users#update', as: 'update_user'
+
 
    devise_for :users, controllers: {
      registrations: "public/registrations",
@@ -16,22 +15,32 @@ Rails.application.routes.draw do
    }
 
    scope module: :public do
-       resources :posts, only: [:new, :index, :show, :search, :create, :destroy]
+       resources :posts, only: [:new, :index, :show, :create, :destroy] do
+         resource :book_marks, only: [:index, :create, :destroy]
+         get :search, on: :collection
+       end
+        get '/users/:id/edit' => 'users#edit', as: 'user_edit'
+        patch 'users/:id' => 'users#update', as: 'update_user'
+        get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+        patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
+        get 'users/:id/show' => 'users#show', as: 'my_page'
+
+        root to: "homes#top"
+        get "about" => "homes#about", as: "about"
+
+        get 'games/search' => 'games#search'
+
+
    end
 
-   root to: "public/homes#top"
-   get "about" => "public/homes#about", as: "about"
 
 
 
-   get 'users/unsubscribe' => 'public/users#unsubscribe', as: 'unsubscribe'
-   patch 'users/withdraw' => 'public/users#withdraw', as: 'withdraw'
-   get 'users/my_page' => 'public/users#show', as: 'my_page'
 
 
-   get 'games/search' => 'public/games#search'
 
-   resources :book_marks, only: [:index, :create, :destroy]
+
+
 
   namespace :admin do
     root to: "admin/homes#top"

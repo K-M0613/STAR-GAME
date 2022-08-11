@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(version: 2022_08_06_114839) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", null: false
-    t.string "sex", null: false
+    t.integer "gender", default: 0, null: false
     t.string "birth_day", null: false
-    t.text "profile_image_url", null: false
+    t.text "profile_image_url"
     t.boolean "is_delete", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

@@ -1,2 +1,46 @@
-<h1>Public::Posts#search</h1>
-<p>Find me in app/views/public/posts/search.html.erb</p>
+<h1>検索結果</h1>
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>目的・背景</th>
+          <th>コメント</th>
+          <th>評価</th>
+          <th>タグ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.purpose %></td>
+          <td><%= post.comment %></td>
+          <td>
+            <div id="star-rate<%= post.id %>"></div>
+            <script>
+              $('#star-rate<%= post.id %>').empty();
+              $('#star-rate<%= post.id %>').raty({
+                size :36,
+                starOff: '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                half: true,
+                readOnly: true,
+                score: <%= post.star %>
+              })
+            </script>
+          </td>
+          <td>
+            <% post.tags.each do |tag| %>
+              <span><%= tag.name %></span>
+            <% end %>
+          </td>
+        </tr>
+       <% end %>
+      </tbody>
+    </table>
+    </table>
+  </div>
+</div>

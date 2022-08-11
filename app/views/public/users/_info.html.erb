@@ -4,7 +4,7 @@
     <th><%= user.nickname %></th>
   </tr>
   <tr>
-    <th><%= user.sex %></th>
+    <th><%= user.gender %></th>
   </tr>
   <tr>
     <th><%= user.birth_day %></th>
@@ -12,6 +12,8 @@
 </table>
 <% if user.nickname != "guestuser" %>
 <div class="row">
-  <%= link_to '', edit_user_path(user), class: "btn btn-online-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+  <%= link_to user_edit_path, class: "btn btn-primary btn-block" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
 </div>
 <% end %>

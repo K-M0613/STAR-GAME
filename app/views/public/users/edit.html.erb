@@ -1,2 +1,28 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<div class="container">
+    <h1 class="form-title pb-md-4">ユーザー情報編集</h1>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 form-wrapper">
+            <%= form_with model: @user, url: update_user_path(@user), method: :patch, local: true do |f| %>
+              <%= render "public/shared/error_messages", resource: @user %>
+              <div class="form-inline">
+                  <%= f.label :nickname, "ユーザーネーム" %>&emsp;
+                  <%= f.text_field :nickname, autofocus: true, class: 'form-control', placefolder: "ユーザーネーム" %>&emsp;
+              </div><br>
+              <div class="form-inline">
+                  <%= f.label :email, "メールアドレス" %>&emsp;
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "xxx@email.com" %>
+              </div><br>
+              <div class="form-inline">
+                  <%= f.label :gender, "性別" %>&emsp;
+                  <%= f.select :gender, ['男', '女'], {include_blank: '選択ボックス'} %>
+              </div><br>
+              <div class="form-inline">
+                  <%= f.label :birth_day, "生年月日" %>&emsp;
+                  <%= f.text_field :birth_day, autofocus: true, autocomplete: "birth_day", class: 'form-control', placefolder: "例：2000/01/01" %>
+              </div><br>
+              <%= f.submit "変更内容を保存", class: "btn btn-success" %>&emsp;&emsp;
+              <%= link_to "退会する", unsubscribe_path, class: 'btn btn-danger' %>
+            <% end %>
+        </div>
+    </div>
+</div>

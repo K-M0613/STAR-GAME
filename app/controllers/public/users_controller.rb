@@ -1,17 +1,17 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
-  
+
   def show
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "更新しました"
       redirect_to my_page_path
@@ -24,8 +24,9 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
-    current_user.update(is_delete: true)
-    sign_out current_user
+    @user = User.find(params[:id])
+    @user.update(is_delete: true)
+    reset_session
     flash[:success] = "退会しました"
     redirect_to root_path
   end
@@ -33,13 +34,13 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :sex, :birth_day, :profile_image_url, :is_delete)
+    params.require(:user).permit(:nickname, :gender, :birth_day, :profile_image_url, :is_delete)
   end
-  
+
   def ensure_guest_user
     @user = User.find(params[:id])
-    if @user.name == "guestuser"
+    if @user.nickname == "guestuser"
       redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
-  end  
+  end
 end
