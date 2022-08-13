@@ -4,6 +4,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @book_marks = BookMark.where(user_id: @user.id)
   end
 
   def edit
@@ -34,7 +35,7 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nickname, :gender, :birth_day, :profile_image_url, :is_delete)
+    params.require(:user).permit(:nickname, :gender, :birth_day, :profile_image_url, :is_delete, tag_ids: [])
   end
 
   def ensure_guest_user

@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
     @user = User.find_by(params[:nickname])
     @tag_list = Tag.all
     @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
-    @post = current_user.post.new
+    @post = Post.find_by(params[:id])
   end
 
   def show

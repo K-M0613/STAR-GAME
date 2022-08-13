@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'comments/create'
+    get 'comments/destroy'
+  end
+  get 'comments/create'
+  get 'comments/destroy'
    devise_for :admins, skip: [:registrations, :passwords], controllers: {
      sessions: "admin/sessions"
    }
@@ -16,6 +22,7 @@ Rails.application.routes.draw do
 
    scope module: :public do
        resources :posts, only: [:new, :index, :show, :create, :destroy] do
+         resources :comments, only: [:create, :destroy]
          resource :book_marks, only: [:index, :create, :destroy]
          get :search, on: :collection
        end
