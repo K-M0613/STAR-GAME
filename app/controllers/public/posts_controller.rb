@@ -28,6 +28,8 @@ class Public::PostsController < ApplicationController
     @user = User.find_by(params[:nickname])
     @post = Post.find(params[:id])
     @post_tags = @post.tags
+    @comment = Comment.new
+    @comments = @post.comments
   end
 
   def search
@@ -45,6 +47,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:purpose, :comment, :title, :star, tag_ids: [],)
+    params.require(:post).permit(:purpose, :body, :title, :star, tag_ids: [],)
   end
 end

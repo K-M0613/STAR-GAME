@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2022_08_13_134304) do
     t.text "title", null: false
     t.text "purpose", null: false
     t.float "star", null: false
-    t.string "comment", null: false
+    t.string "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

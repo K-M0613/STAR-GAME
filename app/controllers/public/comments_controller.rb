@@ -3,6 +3,7 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
+
     if @comment.save
       redirect_to request.referer
     else
@@ -18,9 +19,9 @@ class Public::CommentsController < ApplicationController
     @comment.destroy
     redirect_to request.referer
   end
-  
+
   private
-  
+
   def comment_params
     params.require(:comment).permit(:comment)
   end
