@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 2022_08_13_134304) do
     t.string "nickname", null: false
     t.integer "gender", default: 0, null: false
     t.string "birth_day", null: false
-    t.text "profile_image_url"
     t.boolean "is_delete", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

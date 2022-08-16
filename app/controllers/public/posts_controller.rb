@@ -18,14 +18,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @user = User.find_by(params[:nickname])
     @tag_list = Tag.all
     @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
     @post = Post.find_by(params[:id])
   end
 
   def show
-    @user = User.find_by(params[:nickname])
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @comment = Comment.new
@@ -47,6 +45,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:purpose, :body, :title, :star, tag_ids: [],)
+    params.require(:post).permit(:purpose, :body, :title, :star, :user_id, tag_ids: [],)
   end
 end

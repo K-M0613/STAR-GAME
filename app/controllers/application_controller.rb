@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
+
 
   def after_sign_out_path_for(resource)
     if resource == :admin
@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
 
   private
     def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up,keys:[:nickname, :birth_day, :gender])
+      devise_parameter_sanitizer.permit(:sign_up,keys:[:nickname, :birth_day, :gender, :profile_image_url])
     end
 end

@@ -4,9 +4,9 @@
     <table class="table">
       <thead>
         <tr>
+          <th></th>
+          <th>投稿者</th>
           <th>商品名</th>
-          <th>目的・背景</th>
-          <th>コメント</th>
           <th>評価</th>
           <th>タグ</th>
         </tr>
@@ -14,9 +14,9 @@
       <tbody>
         <% @posts.each do |post| %>
         <tr>
+          <td><%= image_tag post.user.get_profile_image, size:'50x50' %></td>
+          <td><%= post.user.nickname %></td>
           <td><%= post.title %></td>
-          <td><%= post.purpose %></td>
-          <td><%= post.body %></td>
           <td>
             <div id="star-rate<%= post.id %>"></div>
             <script>
@@ -36,6 +36,9 @@
             <% post.tags.each do |tag| %>
               <span><%= tag.name %></span>
             <% end %>
+          </td>
+          <td id="book_mark_buttons_<%= post.id %>">
+            <%= render "public/book_marks/bookmark", post: post %>
           </td>
         </tr>
        <% end %>

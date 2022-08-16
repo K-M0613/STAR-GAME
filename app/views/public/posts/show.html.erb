@@ -4,7 +4,10 @@
     <div class="col-md-3 border border-3 border-info rounded">
       <table class="table">
         <tr>
-          <th><%= @user.nickname %></th>
+          <%= image_tag @post.user.get_profile_image, size:'100x100' %>
+        </tr>
+        <tr>
+          <th><%= @post.user.nickname %></th>
         </tr>
         <tr>
           <th><%= @post.title %></th>
@@ -47,7 +50,7 @@
         <%= f.text_area :comment, size: "40x5" %>
         <%= f.submit '送信', class: "btn-sm btn-primary" %>
       <% end %>
-        <table>
+        <table class="table">
           <thead>
             <tr>
               <th>コメント投稿者名</th>

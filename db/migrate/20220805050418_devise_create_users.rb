@@ -9,7 +9,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :nickname, null: false
       t.integer :gender, null: false, default: 0
       t.string :birth_day, null: false
-      t.text :profile_image_url
       t.boolean :is_delete, null: false, default: false
 
       ## Recoverable

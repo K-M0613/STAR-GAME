@@ -30,7 +30,7 @@ Rails.application.routes.draw do
         patch 'users/:id' => 'users#update', as: 'update_user'
         get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
         patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
-        get 'users/:id/show' => 'users#show', as: 'my_page'
+        get 'users/:id' => 'users#show', as: 'my_page'
 
         root to: "homes#top"
         get "about" => "homes#about", as: "about"

@@ -26,8 +26,8 @@
       <tbody>
         <% @posts.each do |post| %>
         <tr>
-          <td><%= image_tag @user.get_profile_image, size:'50x50' %></td>
-          <td><%= @user.nickname %></td>
+          <td><%= image_tag post.user.get_profile_image, size:'50x50' %></td>
+          <td><%= post.user.nickname %></td>
           <td>
             <%= link_to post_path(post) do %>
               <%= post.title %>

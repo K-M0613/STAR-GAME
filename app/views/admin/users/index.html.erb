@@ -4,6 +4,7 @@
     <table class="table">
       <thead>
         <tr>
+          <th></th>
           <th>ユーザーネーム</th>
           <th>性別</th>
           <th>生年月日</th>
@@ -13,6 +14,7 @@
       <tbody>
         <% @users.each do |user| %>
           <tr>
+            <td><%= image_tag user.get_profile_image, size:'50x50' %></td>
             <td>
               <%= link_to admin_user_path(user) do %>
                 <%= user.nickname %>
