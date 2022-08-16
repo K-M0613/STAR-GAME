@@ -6,7 +6,11 @@
               <%= render "public/shared/error_messages", resource: @user %>
               <div class="form-inline">
                   <%= f.label :nickname, "ユーザーネーム" %>&emsp;
-                  <%= f.text_field :nickname, autofocus: true, class: 'form-control', placefolder: "ユーザーネーム" %>&emsp;
+                  <%= f.text_field :nickname, autofocus: true, class: 'form-control', placeholder: "ユーザーネーム" %>&emsp;
+              </div><br>
+              <div class="form-inline">
+                <%= f.label :profile_image_url, "ユーザー画像" %>&emsp;
+                <%= f.file_field :profile_image_url, placeholder: "プロフィール画像", accept: "image/*" %>
               </div><br>
               <div class="form-inline">
                   <%= f.label :email, "メールアドレス" %>&emsp;

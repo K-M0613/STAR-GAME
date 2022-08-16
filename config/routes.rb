@@ -50,11 +50,11 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    root to: "admin/homes#top"
+    root to: "homes#top"
     get 'users/index' => 'users#index', as: 'users'
-    get 'users/show' => 'users#show', as: 'user'
-    get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
+    get 'users/:id/show' => 'users#show', as: 'user'
+    get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
     resources :posts, only: [:index, :show, :destroy]
   end
 

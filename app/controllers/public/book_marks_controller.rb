@@ -7,8 +7,8 @@ class Public::BookMarksController < ApplicationController
 
   def create
     @post = Post.find_by(id: params[:post_id])
-    book_marks = @post.book_marks.new(user_id: current_user.id)
-    if book_marks.save
+    @book_marks = @post.book_marks.new(user_id: current_user.id)
+    if @book_marks.save
       redirect_to request.referer
     else
       redirect_to request.referer
@@ -17,9 +17,9 @@ class Public::BookMarksController < ApplicationController
 
   def destroy
     @post = Post.find_by(id: params[:post_id])
-    book_marks = @post.book_marks.find_by(user_id: current_user.id)
-    if book_marks.present?
-      book_marks.destroy
+    @book_marks = @post.book_marks.find_by(user_id: current_user.id)
+    if @book_marks.present?
+      @book_marks.destroy
       redirect_to request.referer
     else
       redirect_to request.referer

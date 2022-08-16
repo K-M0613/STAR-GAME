@@ -1,53 +1,57 @@
-<h1>新規投稿</h1>
-<%= form_with model: @post, local: true do |f| %>
- <div class="form-group">
-  <%= f.label "商品名" %>
-  <%= f.text_field :title %>
- </div>
- <div class="form-group">
-   <%= f.label "目的・背景" %><br>
-   <%= f.text_area :purpose %>
- </div>
+<div class="container">
+ <h1>新規投稿</h1>
+ <div class="offset-1">
+  <%= form_with model: @post, local: true do |f| %>
+   <div class="form-group">
+    <%= f.label "商品名" %><br>
+    <%= f.text_field :title, class: 'form-control' %>
+   </div>
+   <div class="form-group">
+     <%= f.label "目的・背景" %><br>
+     <%= f.text_area :purpose, class: 'form-control' %>
+   </div>
 
- <div class="form-group">
-   <%= f.label "コメント" %><br>
-   <%= f.text_area :body %>
- </div>
+   <div class="form-group">
+     <%= f.label "コメント" %><br>
+     <%= f.text_area :body, class: 'form-control' %>
+   </div>
 
- <div class="form-group row" id="star">
-    <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
-    <%= f.hidden_field :star, id: :review_star %>
- </div>
-  <script>
-       $('#star').empty();
-    $('#star').raty({
-    size: 36,
-    starOff: '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-         scoreName: 'post[star]',
-    half: true,
-  });
-  </script>
+   <div class="form-group row" id="star">
+      <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+      <%= f.hidden_field :star, id: :review_star %>
+   </div>
+    <script>
+         $('#star').empty();
+      $('#star').raty({
+      size: 36,
+      starOff: '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+           scoreName: 'post[star]',
+      half: true,
+    });
+    </script>
 
-  <%= f.label "タグ選択" %>
-  <div class="form-group">
-    <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
-      <div class="form-check">
-       <%= tag.label class: 'form-check-label' do %>
-         <%= tag.check_box class: 'form-check-input' %>
-         <%= tag.text %>
-       <% end %>
-      </div>
-    <% end %>
+    <%= f.label "タグ選択" %>
+    <div class="form-group">
+      <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+        <div class="form-check">
+         <%= tag.label class: 'form-check-label' do %>
+           <%= tag.check_box class: 'form-check-input' %>
+           <%= tag.text %>
+         <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!--<div class="form-group">-->
+    <!-- <%#= f.label "その他ジャンル(,で区切ると複数タグ登録できます)" %><br>-->
+    <!-- <%#= f.text_field :name, placeholder: "例:アクション,RPG" %>-->
+    <!--</div>-->
+
+    <div class="form-group">
+    <%= f.submit "投稿" %>
+   </div>
+  <% end %>
   </div>
-
-  <!--<div class="form-group">-->
-  <!-- <%#= f.label "その他ジャンル(,で区切ると複数タグ登録できます)" %><br>-->
-  <!-- <%#= f.text_field :name, placeholder: "例:アクション,RPG" %>-->
-  <!--</div>-->
-
-  <div class="form-group">
-  <%= f.submit "投稿" %>
- </div>
-<% end %>
+</div>

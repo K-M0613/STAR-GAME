@@ -1,2 +1,58 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 border border-3 border-primary rounded">
+      <h2>PROFILE</h2>
+      <%= render 'public/users/info', user: @user %>
+      <div>
+        <% if @user.is_delete == false %>
+          <%= link_to "退会させる", admin_unsubscribe_path, class: 'btn btn-danger' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="offset-3">
+      <h3 class="border-top">ブックマーク一覧</h3>
+    <table class="table table-container" style="display: block; overflow-y: scroll; height: calc(100vh/2);">
+    　<thead>
+        <tr>
+          <th style="position: sticky; top: 0; z-index: 1; background: gold;">投稿者名</th>
+          <th style="position: sticky; top: 0; z-index: 1; background: gold;">商品名</th>
+          <th style="position: sticky; top: 0; z-index: 1; background: gold;">評価</th>
+          <th style="position: sticky; top: 0; z-index: 1; background: gold;">タグ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @book_marks.each do |book_mark| %>
+        <tr>
+          <td><%= book_mark.post.user.nickname %></td>
+          <td>
+            <%= link_to admin_post_path(book_mark.post) do %>
+              <%= book_mark.post.title %>
+            <% end %>
+          </td>
+          <td>
+            <div id="star-rate<%= book_mark.post.id %>"></div>
+                <script>
+                  $('#star-rate<%= book_mark.post.id %>').empty();
+                  $('#star-rate<%= book_mark.post.id %>').raty({
+                    size :36,
+                    starOff: '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+                    starHalf: '<%= asset_path('star-half.png') %>',
+                    half: true,
+                    readOnly: true,
+                    score: <%= book_mark.post.star %>
+                  })
+                </script>
+          </td>
+          <td>
+            <% book_mark.post.tags.each do |tag| %>
+              <span><%= tag.name %></span>
+            <% end %>
+          </td>
+        </tr>
+       <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>

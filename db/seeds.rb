@@ -13,3 +13,8 @@ Tag.create([
   { name: '玩具' },
   { name: '周辺機' },
   ])
+  
+Admin.create!(
+  email: 'star-game@admin.com',
+  password: 'adminstar'
+  )
