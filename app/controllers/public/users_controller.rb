@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_current_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])
@@ -44,4 +45,12 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
+
+  def ensure_current_user
+    if current_user.id != params[:id].to_i
+      flash[:notice] = "権限がありません"
+      redirect_to my_page_path(current_user)
+    end
+  end
+
 end
