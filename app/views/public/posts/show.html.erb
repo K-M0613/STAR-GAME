@@ -7,7 +7,11 @@
           <%= image_tag @post.user.get_profile_image, size:'100x100' %>
         </tr>
         <tr>
-          <th><%= @post.user.nickname %></th>
+          <th>
+            <%= link_to my_page_path(@post.user_id) do %>
+              <%= @post.user.nickname %>
+            <% end %>
+          </th>
         </tr>
         <tr>
           <th><%= @post.title %></th>
@@ -60,7 +64,11 @@
           <tbody>
             <% @comments.each do |comment| %>
               <tr>
-                <td><%= comment.user.nickname %></td>
+                <td>
+                  <%= link_to my_page_path(comment.user.id) do %>
+                    <%= comment.user.nickname %>
+                  <% end %>
+                </td>
                 <td><%= comment.comment %></td>
                 <td><%= link_to "削除", post_comment_path(@post, comment), method: :delete %></td>
               </tr>
