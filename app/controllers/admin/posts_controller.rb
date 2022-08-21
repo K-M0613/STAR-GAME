@@ -2,7 +2,7 @@ class Admin::PostsController < ApplicationController
   def index
     @tag_list = Tag.all
     @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).post : Post.all
-    @post = Post.find_by(params[:id])
+    @posts = @posts.page(params[:page]).per(10)
   end
 
   def show
