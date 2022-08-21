@@ -19,8 +19,8 @@ class Public::PostsController < ApplicationController
 
   def index
     @tag_list = Tag.all
-    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all.page(params[:page]).per(5)
-    @post = Post.find_by(params[:id])
+    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+    @post = Post.all.page(params[:page]).per(5)
   end
 
   def show
@@ -32,10 +32,10 @@ class Public::PostsController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%")
+      @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5)
       @keyword = params[:keyword]
     else
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(5)
     end
   end
 
