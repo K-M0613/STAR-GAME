@@ -6,6 +6,7 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
     @post_tags = @post.tags
     @comments = @post.comments
   end
