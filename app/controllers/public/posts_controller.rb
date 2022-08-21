@@ -20,7 +20,7 @@ class Public::PostsController < ApplicationController
   def index
     @tag_list = Tag.all
     @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
-    @post = Post.all.page(params[:page]).per(5)
+    @posts = @posts.page(params[:page]).per(5)
   end
 
   def show
