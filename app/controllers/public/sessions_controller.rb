@@ -4,13 +4,13 @@ class Public::SessionsController < Devise::SessionsController
    before_action :user_state, only: [:create]
 
    def after_sign_in_path_for(resource)
-     my_page_path
+     root_path
    end
 
    def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to my_page_path(user), notice: 'guestuserでログインしました。'
+    redirect_to my_page_path(current_user), notice: 'guestuserでログインしました。'
    end
 
   # GET /resource/sign_in

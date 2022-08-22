@@ -1,5 +1,11 @@
 <table class="table table-bordered border-primary">
-  <th><%= image_tag user.get_profile_image, size: '100x100' %></th>
+  <th>
+    <% if user.profile_image.attached? %>
+      <%= image_tag user.profile_image, size: "100x100" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "100x100" %>
+    <% end %>
+  </th>
   <tr>
     <th><%= user.nickname %></th>
   </tr>

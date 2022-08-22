@@ -1,25 +1,25 @@
 <table class="table table-container" style="display: block; overflow-y: scroll; height: calc(100vh/2);">
-          <thead>
-            <tr>
-              <th style="position: sticky; top: 0; z-index: 1; background: #66CCFF;">コメント投稿者名</th>
-              <th style="position: sticky; top: 0; z-index: 1; background: #66CCFF;">コメント内容</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% post.comments.each do |comment| %>
-              <tr>
-                <td>
-                  <%= link_to my_page_path(comment.user.id) do %>
-                    <%= comment.user.nickname %>
-                  <% end %>
-                </td>
-                <td><%= comment.comment %></td>
-                <td>
-                  <% if comment.user == current_user %>
-                    <%= link_to "削除", post_comment_path(post, comment), method: :delete, remote: true %>
-                  <% end %>
-                </td>
-              </tr>
+    <thead>
+      <tr>
+        <th style="position: sticky; top: 0; z-index: 1; background: #66CCFF;">コメント投稿者名</th>
+        <th style="position: sticky; top: 0; z-index: 1; background: #66CCFF;">コメント内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% post.comments.each do |comment| %>
+        <tr>
+          <td>
+            <%= link_to my_page_path(comment.user.id) do %>
+              <%= comment.user.nickname %>
             <% end %>
-          </tbody>
-      </table>
+          </td>
+          <td><%= comment.comment %></td>
+          <td>
+            <% if comment.user == current_user %>
+              <%= link_to "削除", post_comment_path(post, comment), method: :delete, remote: true %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
