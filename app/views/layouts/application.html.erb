@@ -9,6 +9,7 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/b153492b0c.js" crossorigin="anonymous"></script>
+    <%= yield :css %>
   </head>
 
   <body>
@@ -17,7 +18,7 @@
     <% else %>
       <%= render 'layouts/user_header' %>
     <% end %>
-    <footer class="fixed-bottom border-top border-dark text-dark bg-white" style="height: 65px; text-align: center ; line-height: 70px;">
+    <footer>
       <p>Copyright © StarGame Inc. All Rights Reserved.</p>
     </footer>
     <%= yield %>

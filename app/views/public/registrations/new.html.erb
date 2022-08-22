@@ -1,62 +1,53 @@
-<div class="container">
-    <h5 class="bg-light text-dark text-center" style="width: 20%;">新規登録</h5>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "public/shared/error_messages", resource: resource %>
-    <table class="table table-borderless">
-      <tbody>
-        <tr>
-          <td style="width: 20%;">ニックネーム</td>
-          <td class="form-inline">
-            <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
-          </td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td class="form-inline">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </td>
-        </tr>
-        <tr>
-          <td>性別</td>
-          <td>
-            <%= f.select :gender, ['男', '女'], {include_blank: '選択ボックス'} %>
-          </td>
-        </tr>
-        <tr>
-          <td>生年月日</td>
-          <td>
-            <%= f.text_field :birth_day, autofocus: true, autocomplete: "birth_day", placeholder: "例：2000/01/01" %>
-          </td>
-        </tr>
-        <tr>
-          <td>パスワード
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %>文字以上)</em>
-            <% end %>
-          </td>
-          <td>
-            <%= f.password_field :password, autocomplete: "new-password" %>
-          </td>
-        </tr>
-        <tr>
-          <td>パスワード(確認用)</td>
-          <td>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="row">
-      <div class="col-lg-3"></div>
-      <div class="col-lg-2">
-        <%= f.submit "新規登録", class: 'btn btn-success btn-sm btn-block' %>
-      </div>
+<% content_for :css do %>
+  <%= stylesheet_link_tag 'signup.css' %>
+<% end %>
+<div class="box">
+  <div class="box-inner">
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <h1>新規登録</h1>
+    <div class="box-name">
+      <%= f.label :nickname, "ニックネーム" %><br />
+      <%= f.text_field :nickname, autofocus: true %>
     </div>
-   <% end %>
-    <h5 class="bg-light text-dark text-center" style="wigth: 10%;">すでに登録済みの方</h5>
 
-    <h6>
-      <%= link_to "こちら", new_user_session_path %> からログインしてください
-    </h6>
+    <div class="box-email">
+      <%= f.label :email, "Eメール" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="box-gender">
+      <%= f.label :gender, "性別" %><br />
+      <%= f.select :gender, ['男', '女'], {include_blank: '選択ボックス'} %>
+    </div>
+
+    <div class="box-birthday">
+      <%= f.label :birth_day, "生年月日" %><br />
+      <%= f.text_field :birth_day, autofocus: true, autocomplete: "birth_day", placeholder: "例：2000/01/01" %>
+    </div>
+
+    <div class="box-password">
+      <%= f.label :password, "パスワード" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="box-password">
+      <%= f.label :password_confirmation, "パスワード(確認)" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="box-login">
+      <%= f.submit "新規登録" %>
+    </div>
+    <% end %>
+
+    <div class="box-newusr">
+      <p><span>------------</span> 既に登録されていますか？ <span>------------</span></p>
+      <%= link_to "ログイン", new_user_session_path %>
+    </div>
+  </div>
 </div>
+<div class="push"
