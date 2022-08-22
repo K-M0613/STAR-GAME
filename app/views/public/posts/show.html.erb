@@ -1,8 +1,8 @@
 <h1>投稿詳細</h1>
 <div class="container">
   <div class="row">
-    <div class="col-md-3 border border-3 border-info rounded">
-      <table class="table">
+    <div class="col-md-5">
+      <table class="table table-bordered border-primary">
         <tr>
           <%= image_tag @post.user.get_profile_image, size:'100x100' %>
         </tr>
@@ -46,35 +46,23 @@
             <% end %>
           </th>
         </tr>
+        <tr>
+          <th>
+            <% if @post.user == current_user %>
+              <%= link_to "削除", post_path, method: :delete, class: 'btn-sm btn-danger' %>
+            <% end %>
+          </th>
+        </tr>
       </table>
     </div>
     <div class="offset-3">
       <h3>コメントする</h3>
-      <%= form_with model: [@post, @comment], local: true do |f| %>
-        <%= f.text_area :comment, size: "40x5" %>
-        <%= f.submit '送信', class: "btn-sm btn-primary" %>
-      <% end %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>コメント投稿者名</th>
-              <th>コメント内容</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @comments.each do |comment| %>
-              <tr>
-                <td>
-                  <%= link_to my_page_path(comment.user.id) do %>
-                    <%= comment.user.nickname %>
-                  <% end %>
-                </td>
-                <td><%= comment.comment %></td>
-                <td><%= link_to "削除", post_comment_path(@post, comment), method: :delete %></td>
-              </tr>
-            <% end %>
-          </tbody>
-      </table>
+      <div class="new-comment">
+        <%= render 'public/comments/form', post: @post, comment: @comment %>
+      </div>
+        <div id="comments_area">
+          <%= render 'public/comments/post_comments', post: @post %>
+        </div>
     </div>
   </div>
 </div>

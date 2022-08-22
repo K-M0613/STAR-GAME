@@ -6,11 +6,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    # tag_list=params[:post][:name].split(',')
-    # binding.pry
     if @post.save
-      # binding.pry
-      # @post.save_tag(tag_list)
       redirect_to posts_path, notice: '投稿完了しました:)'
     else
       render :new
@@ -40,6 +36,9 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path, notice: "削除しました。"
   end
 
   private

@@ -5,11 +5,10 @@ class Public::CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     if @comment.save
-      redirect_to request.referer
     else
-      @post_new = Book.new
+      @post_new = Post.new
       @comments = @post.comments
-      redirect_to new_post_path
+      render 'posts/show'
     end
   end
 
@@ -17,7 +16,6 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to request.referer
   end
 
   private
