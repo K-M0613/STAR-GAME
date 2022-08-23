@@ -15,8 +15,19 @@ class Public::PostsController < ApplicationController
 
   def index
     @tag_list = Tag.all
-    @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
-    @posts = @posts.page(params[:page]).per(10)
+    if params[:latest]
+      @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.latest
+      @posts = @posts.page(params[:page]).per(10)
+    elsif params[:old]
+      @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.old
+      @posts = @posts.page(params[:page]).per(10)
+    elsif params[:star_count]
+      @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.star_count
+      @posts = @posts.page(params[:page]).per(10)
+    else
+      @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
+      @posts = @posts.page(params[:page]).per(10)
+    end
   end
 
   def show

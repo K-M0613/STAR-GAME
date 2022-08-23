@@ -9,6 +9,10 @@ class Post < ApplicationRecord
   def book_marked_by?(user)
     book_marks.where(user_id: user).exists?
   end
+  
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(star: :desc)}
 
   # def save_tag(sent_tags)
   #   current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
