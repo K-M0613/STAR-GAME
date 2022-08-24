@@ -30,6 +30,10 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def index_user
+    @posts = Blog.where(user_id: params[:id])
+  end
+
   def show
     @post = Post.find(params[:id])
     @post_tags = @post.tags
