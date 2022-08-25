@@ -1,4 +1,5 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @tag_list = Tag.all
     @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).post : Post.all

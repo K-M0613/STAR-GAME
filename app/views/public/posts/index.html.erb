@@ -31,7 +31,13 @@
       <tbody>
         <% @posts.each do |post| %>
         <tr>
-          <td><%= image_tag post.user.get_profile_image, size:'50x50' %></td>
+          <td>
+            <% if post.user.profile_image.attached? %>
+              <%= image_tag post.user.profile_image, size: "50x50" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "100x100" %>
+            <% end %>
+          </td>
           <td>
             <%= link_to my_page_path(post.user_id) do %>
               <%= post.user.nickname %>
