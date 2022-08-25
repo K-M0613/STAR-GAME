@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    get 'users/index' => 'users#index', as: 'users'
+    get 'users' => 'users#index', as: 'users'
     get 'users/:id/show' => 'users#show', as: 'user'
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'

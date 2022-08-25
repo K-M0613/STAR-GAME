@@ -19,10 +19,14 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(nickname: 'guestuser' ,email: 'guest@example.com',gender: 0,birth_day: 'none') do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.nickname = "guestuser"
-    end
+    user = find_or_create_by(nickname: 'guestuser',
+                              email: 'guest@example.com',
+                              gender: 0,
+                              birth_day: 'none')
+    user.password = SecureRandom.urlsafe_base64
+    user.is_delete = false
+    user.save
+    user
   end
 
   def get_profile_image

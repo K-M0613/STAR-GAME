@@ -43,10 +43,10 @@ class Public::PostsController < ApplicationController
 
   def search
     if params[:keyword].present?
-      @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(5)
+      @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").page(params[:page]).per(10)
       @keyword = params[:keyword]
     else
-      @posts = Post.all.page(params[:page]).per(5)
+      @posts = Post.all.page(params[:page]).per(10)
     end
   end
 
