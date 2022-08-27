@@ -1,4 +1,4 @@
-<h2 style="text-align: center;">検索結果</h2>
+<h1>検索結果</h1>
 <div class="container">
   <div class="row">
     <table class="table">
@@ -44,9 +44,6 @@
             <% post.tags.each do |tag| %>
               <span><%= tag.name %></span>
             <% end %>
-          </td>
-          <td id="book_mark_buttons_<%= post.id %>">
-            <%= render "public/book_marks/bookmark", post: post %>
           </td>
         </tr>
        <% end %>

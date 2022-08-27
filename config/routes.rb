@@ -41,21 +41,15 @@ Rails.application.routes.draw do
    end
 
 
-
-
-
-
-
-
-
-
   namespace :admin do
     root to: "homes#top"
     get 'users' => 'users#index', as: 'users'
     get 'users/:id/show' => 'users#show', as: 'user'
     get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      get :search, on: :collection
+    end
   end
 
 

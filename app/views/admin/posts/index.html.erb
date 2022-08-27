@@ -1,52 +1,76 @@
-<h2 style="color: #99CCCC; text-align: center;">投稿一覧</h2>
+<h2 class="pt-3 pb-3" style="color: #99CCCC; text-align: center;">投稿一覧</h2>
 <div clas="container">
   <div class="row">
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>投稿者</th>
-          <th>商品名</th>
-          <th>評価</th>
-          <th>タグ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @posts.each do |post| %>
-        <tr>
-          <td>
-            <%= image_tag post.user.get_profile_image, size:'50x50' %>
-          </td>
-          <td><%= post.user.nickname %></td>
-          <td>
-            <%= link_to admin_post_path(post) do %>
-              <%= post.title %>
-            <% end %>
-          </td>
-          <td>
-            <div id="star-rate<%= post.id %>"></div>
-            <script>
-              $('#star-rate<%= post.id %>').empty();
-              $('#star-rate<%= post.id %>').raty({
-                size :36,
-                starOff: '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                starHalf: '<%= asset_path('star-half.png') %>',
-                half: true,
-                readOnly: true,
-                score: <%= post.star %>
-              })
-            </script>
-          </td>
-          <td>
-            <% post.tags.each do |tag| %>
-              <span><%= tag.name %></span>
-            <% end %>
-          </td>
-        </tr>
-       <% end %>
-      </tbody>
-    </table>
+    <div class="col-md-8">
+      <div class="offset-4">
+        <%= form_tag admin_posts_path, method: :get, class: 'boards_searchForm' do %>
+          <%= select_tag :tag_id,options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                         {
+                           prompt: 'タグで絞り込み検索',
+                           onchange:'submit(this.form);'
+                         }
+          %>
+          <% end %>
+          <%= form_with url: search_admin_posts_path, local: true, method: :get do |f| %>
+            <%= select_tag :key_ascending, options_for_select("新しい順": "created_at asc", "古い順": "created_at desc", "高評価順": "star desc", "低評価順": "star asc"), include_blanc: true %>
+            <%= f.text_field :keyword %>
+            <%= f.submit "検索" %>
+        <% end %>
+        <p class="pl-3">
+          <%= link_to "新しい順", admin_posts_path(latest: "true") %>
+          |<%= link_to "古い順", admin_posts_path(old: "true") %>
+          |<%= link_to "評価の高い順", admin_posts_path(star_count: "true") %>
+        </p>
+      </div>
+      <table class="table offset-3">
+        <thead>
+          <tr>
+            <th style="background-color: #8EB8FF;"></th>
+            <th style="background-color: #8EB8FF;">投稿者</th>
+            <th style="background-color: #8EB8FF;">商品名</th>
+            <th style="background-color: #8EB8FF;">評価</th>
+            <th style="background-color: #8EB8FF;">タグ</th>
+            <th style="background-color: #8EB8FF;">投稿日時</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= image_tag post.user.get_profile_image, size:'50x50' %>
+            </td>
+            <td><%= post.user.nickname %></td>
+            <td>
+              <%= link_to admin_post_path(post) do %>
+                <%= post.title %>
+              <% end %>
+            </td>
+            <td>
+              <div id="star-rate<%= post.id %>"></div>
+              <script>
+                $('#star-rate<%= post.id %>').empty();
+                $('#star-rate<%= post.id %>').raty({
+                  size :36,
+                  starOff: '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  half: true,
+                  readOnly: true,
+                  score: <%= post.star %>
+                })
+              </script>
+            </td>
+            <td>
+              <% post.tags.each do |tag| %>
+                <span><%= tag.name %></span>
+              <% end %>
+            </td>
+            <td><%= l post.created_at %></td>
+          </tr>
+         <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <%= paginate @posts %>
 </div>

@@ -1,10 +1,9 @@
-<h1>投稿詳細</h1>
-<div class="container">
+<div class="container pt-5">
   <div class="row">
-    <div class="col-md-3 border border-3 border-info rounded">
-      <table class="table">
+    <div class="col-md-4">
+      <table class="table table-bordered border-primary">
         <tr>
-          <%= image_tag @post.user.get_profile_image, size:'50x50' %>
+          <%= image_tag @post.user.get_profile_image, size:'100x100' %>
         </tr>
         <tr>
           <th><%= @post.user.nickname %></th>
@@ -41,6 +40,8 @@
               <span><%= tag.name %></span>
             <% end %>
           </th>
+        </tr>
+        <tr>
           <th>
             <%= link_to "削除", admin_post_path, method: :delete, class: 'btn-sm btn-danger' %>
           </th>
@@ -48,22 +49,9 @@
       </table>
     </div>
     <div class="offset-3">
-        <table>
-          <thead>
-            <tr>
-              <th>コメント投稿者名</th>
-              <th>コメント内容</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @comments.each do |comment| %>
-              <tr>
-                <td><%= comment.user.nickname %></td>
-                <td><%= comment.comment %></td>
-              </tr>
-            <% end %>
-          </tbody>
-      </table>
+      <div id="comments_area">
+        <%= render 'public/comments/post_comments', post: @post %>
+      </div>
     </div>
   </div>
 </div>

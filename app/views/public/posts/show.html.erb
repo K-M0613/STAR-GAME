@@ -3,7 +3,11 @@
     <div class="col-md-5">
       <table class="table table-bordered border-primary">
         <tr>
-          <%= image_tag @post.user.get_profile_image, size:'100x100' %>
+          <% if @post.user.profile_image.attached? %>
+            <%= image_tag @post.user.profile_image, size: "100x100" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "100x100" %>
+          <% end %>
         </tr>
         <tr>
           <th>
