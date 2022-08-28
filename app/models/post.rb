@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   validates :purpose, presence: true
   validates :star, presence: true
 
-  scope :latest, -> {order(created_at: :desc)}
-  scope :old, -> {order(created_at: :asc)}
-  scope :star_count, -> {order(star: :desc)}
+  scope :latest, -> { order(created_at: :desc) }
+  scope :old, -> { order(created_at: :asc) }
+  scope :star_count, -> { order(star: :desc) }
 end

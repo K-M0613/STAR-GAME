@@ -1,52 +1,50 @@
 Rails.application.routes.draw do
   namespace :public do
-    get 'comments/create'
-    get 'comments/destroy'
+    get "comments/create"
+    get "comments/destroy"
   end
-  get 'comments/create'
-  get 'comments/destroy'
-   devise_for :admins, skip: [:registrations, :passwords], controllers: {
-     sessions: "admin/sessions"
-   }
+  get "comments/create"
+  get "comments/destroy"
+  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
 
-   devise_scope :user do
-    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
-   end
-
-
-
-   devise_for :users, controllers: {
-     registrations: "public/registrations",
-     sessions: 'public/sessions'
-   }
-
-   scope module: :public do
-       resources :posts, only: [:new, :index, :show, :create, :destroy] do
-         resources :comments, only: [:create, :destroy]
-         resource :book_marks, only: [:index, :create, :destroy]
-         get :search, on: :collection
-       end
-        get '/users/:id/edit' => 'users#edit', as: 'user_edit'
-        patch 'users/:id' => 'users#update', as: 'update_user'
-        get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-        patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
-        get 'users/:id' => 'users#show', as: 'my_page'
-
-        root to: "homes#top"
-        get "about" => "homes#about", as: "about"
-
-        get 'games/search' => 'games#search'
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
 
 
-   end
+
+  devise_for :users, controllers: {
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
+
+  scope module: :public do
+    resources :posts, only: [:new, :index, :show, :create, :destroy] do
+       resources :comments, only: [:create, :destroy]
+       resource :book_marks, only: [:index, :create, :destroy]
+       get :search, on: :collection
+     end
+    get "/users/:id/edit" => "users#edit", as: "user_edit"
+    patch "users/:id" => "users#update", as: "update_user"
+    get "users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe"
+    patch "users/:id/withdraw" => "users#withdraw", as: "withdraw"
+    get "users/:id" => "users#show", as: "my_page"
+
+    root to: "homes#top"
+    get "about" => "homes#about", as: "about"
+
+    get "games/search" => "games#search"
+  end
 
 
   namespace :admin do
     root to: "homes#top"
-    get 'users' => 'users#index', as: 'users'
-    get 'users/:id/show' => 'users#show', as: 'user'
-    get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    patch 'users/:id/withdraw' => 'users#withdraw', as: 'withdraw'
+    get "users" => "users#index", as: "users"
+    get "users/:id/show" => "users#show", as: "user"
+    get "users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe"
+    patch "users/:id/withdraw" => "users#withdraw", as: "withdraw"
     resources :posts, only: [:index, :show, :destroy] do
       get :search, on: :collection
     end

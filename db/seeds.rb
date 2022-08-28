@@ -7,14 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Tag.create([
-  { name: 'PS5' },
-  { name: 'Swich' },
-  { name: 'PS4' },
-  { name: '玩具' },
-  { name: '周辺機' },
+  { name: "PS5" },
+  { name: "Swich" },
+  { name: "PS4" },
+  { name: "玩具" },
+  { name: "周辺機" },
   ])
-  
+
 Admin.create!(
-  email: 'star-game@admin.com',
-  password: 'adminstar'
-  )
+  email: "star-game@admin.com",
+  password: "adminstar"
+)

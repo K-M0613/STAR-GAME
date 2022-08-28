@@ -9,7 +9,7 @@ class Public::CommentsController < ApplicationController
     else
       @post_new = Post.new
       @comments = @post.comments
-      render 'posts/show'
+      render "posts/show"
     end
   end
 
@@ -20,8 +20,7 @@ class Public::CommentsController < ApplicationController
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:comment)
-  end
+    def comment_params
+      params.require(:comment).permit(:comment)
+    end
 end

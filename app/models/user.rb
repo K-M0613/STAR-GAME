@@ -19,10 +19,10 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    user = find_or_create_by(nickname: 'guestuser',
-                              email: 'guest@example.com',
+    user = find_or_create_by(nickname: "guestuser",
+                              email: "guest@example.com",
                               gender: 0,
-                              birth_day: 'none')
+                              birth_day: "none")
     user.password = SecureRandom.urlsafe_base64
     user.is_delete = false
     user.save
@@ -31,8 +31,8 @@ class User < ApplicationRecord
 
   def get_profile_image
     unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      file_path = Rails.root.join("app/assets/images/no_image.jpg")
+      profile_image.attach(io: File.open(file_path), filename: "default-image.jpg", content_type: "image/jpeg")
     else
       profile_image
     end

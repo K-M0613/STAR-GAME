@@ -22,19 +22,19 @@ class Admin::PostsController < ApplicationController
     @post_tags = @post.tags
     @comments = @post.comments
   end
-  
+
   def search
     if params[:keyword].present?
       if params[:key_ascending] == "created_at asc"
-        @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").order(created_at: :asc).page(params[:page]).per(10)
+        @posts = Post.where("title LIKE ?", "%#{params[:keyword]}%").order(created_at: :asc).page(params[:page]).per(10)
       elsif params[:key_ascending] == "created_at desc"
-        @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").order(created_at: :desc).page(params[:page]).per(10)
+        @posts = Post.where("title LIKE ?", "%#{params[:keyword]}%").order(created_at: :desc).page(params[:page]).per(10)
       elsif params[:key_ascending] == "star asc"
-        @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").order(star: :asc).page(params[:page]).per(10)
+        @posts = Post.where("title LIKE ?", "%#{params[:keyword]}%").order(star: :asc).page(params[:page]).per(10)
       elsif params[:key_ascending] == "star desc"
-        @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").order(star: :desc).page(params[:page]).per(10)
+        @posts = Post.where("title LIKE ?", "%#{params[:keyword]}%").order(star: :desc).page(params[:page]).per(10)
       else
-       @posts = Post.all.page(params[:page]).per(10)
+        @posts = Post.all.page(params[:page]).per(10)
       end
       @keyword = params[:keyword]
     end

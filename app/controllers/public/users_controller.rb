@@ -34,23 +34,21 @@ class Public::UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:nickname, :gender, :birth_day, :profile_image, :email, :is_delete, tag_ids: [])
-  end
-
-  def ensure_guest_user
-    @user = User.find(params[:id])
-    if @user.nickname == "guestuser"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    def user_params
+      params.require(:user).permit(:nickname, :gender, :birth_day, :profile_image, :email, :is_delete, tag_ids: [])
     end
-  end
 
-  def ensure_current_user
-    if current_user.id != params[:id].to_i
-      flash[:notice] = "権限がありません"
-      redirect_to my_page_path(current_user)
+    def ensure_guest_user
+      @user = User.find(params[:id])
+      if @user.nickname == "guestuser"
+        redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      end
     end
-  end
 
+    def ensure_current_user
+      if current_user.id != params[:id].to_i
+        flash[:notice] = "権限がありません"
+        redirect_to my_page_path(current_user)
+      end
+    end
 end

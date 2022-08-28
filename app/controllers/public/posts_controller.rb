@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_path, notice: '投稿完了しました:)'
+      redirect_to posts_path, notice: "投稿完了しました:)"
     else
       render :new
     end
@@ -45,17 +45,19 @@ class Public::PostsController < ApplicationController
   def search
     if params[:keyword].present?
       if params[:key_ascending] == "created_at asc"
-        @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").order(created_at: :asc).page(params[:page]).per(10)
+        @posts = Post.where("title LIKE ?", "%#{params[:keyword]}%").order(created_at: :asc).page(params[:page]).per(10)
       elsif params[:key_ascending] == "created_at desc"
-        @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").order(created_at: :desc).page(params[:page]).per(10)
+        @posts = Post.where("title LIKE ?", "%#{params[:keyword]}%").order(created_at: :desc).page(params[:page]).per(10)
       elsif params[:key_ascending] == "star asc"
-        @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").order(star: :asc).page(params[:page]).per(10)
+        @posts = Post.where("title LIKE ?", "%#{params[:keyword]}%").order(star: :asc).page(params[:page]).per(10)
       elsif params[:key_ascending] == "star desc"
-        @posts = Post.where('title LIKE ?', "%#{params[:keyword]}%").order(star: :desc).page(params[:page]).per(10)
+        @posts = Post.where("title LIKE ?", "%#{params[:keyword]}%").order(star: :desc).page(params[:page]).per(10)
       else
-       @posts = Post.all.page(params[:page]).per(10)
+        @posts = Post.all.page(params[:page]).per(10)
       end
       @keyword = params[:keyword]
+    else
+      redirect_to request.referer
     end
   end
 
@@ -66,8 +68,7 @@ class Public::PostsController < ApplicationController
   end
 
   private
-
-  def post_params
-    params.require(:post).permit(:purpose, :body, :title, :star, :user_id, tag_ids: [],)
-  end
+    def post_params
+      params.require(:post).permit(:purpose, :body, :title, :star, :user_id, tag_ids: [],)
+    end
 end
