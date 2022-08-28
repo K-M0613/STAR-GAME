@@ -8,17 +8,18 @@ body {
  }
 
  main {
-   padding-bottom: 50px;
+   padding-bottom: 100px;
  }
 
  footer {
+    height: 74px;
     width: 100%;
     color: #808080;
-    background: #FFFF66;
     position: absolute;
     bottom: 0;
  }
 
  footer p {
    text-align: center;
+   padding-top: 25px;
  }

@@ -37,6 +37,8 @@ class Admin::PostsController < ApplicationController
         @posts = Post.all.page(params[:page]).per(10)
       end
       @keyword = params[:keyword]
+    else
+      redirect_to request.referer
     end
   end
 
