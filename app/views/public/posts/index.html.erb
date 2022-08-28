@@ -1,4 +1,4 @@
-<h2 class="pt-3 pb-3" style="color: #99CCCC; text-align: center;">投稿一覧</h2>
+<h2 class="pt-3 pb-3" style="text-align: center;">投稿一覧</h2>
 <div class="container">
   <div class="row">
     <%= form_tag posts_path, method: :get, class: 'boards_searchForm' do %>
@@ -37,7 +37,7 @@
             <% if post.user.profile_image.attached? %>
               <%= image_tag post.user.profile_image, size: "50x50" %>
             <% else %>
-              <%= image_tag 'no_image', size: "100x100" %>
+              <%= image_tag 'no_image.jpg', size: "50x50" %>
             <% end %>
           </td>
           <td>

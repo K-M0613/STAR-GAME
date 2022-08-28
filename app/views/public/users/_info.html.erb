@@ -16,12 +16,3 @@
     <th><%= user.birth_day %></th>
   </tr>
 </table>
-<% if user.nickname != "guestuser" %>
-  <% if @user.id == current_user.id %>
-    <div class="row">
-      <%= link_to user_edit_path, class: "btn btn-primary btn-block" do %>
-        <i class="fas fa-user-cog"></i>
-      <% end %>
-    </div>
-  <% end %>
-<% end %>
