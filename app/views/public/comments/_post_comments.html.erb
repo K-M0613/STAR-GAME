@@ -13,7 +13,7 @@
               <%= comment.user.nickname %>
             <% end %>
           </td>
-          <td><%= comment.comment %></td>
+          <td class="text-break"><%= comment.comment %></td>
           <td>
             <% if comment.user == current_user %>
               <%= link_to "削除", post_comment_path(post, comment), method: :delete, remote: true %>

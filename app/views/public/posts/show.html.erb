@@ -1,6 +1,6 @@
 <div class="container pt-5">
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
       <table class="table table-bordered border-primary">
         <tr>
           <% if @post.user.profile_image.attached? %>
@@ -58,7 +58,7 @@
         </tr>
       </table>
     </div>
-    <div class="offset-3">
+    <div class="col-md-5 offset-md-1">
       <h3 style="color: #0066FF;">コメントする</h3>
       <div class="new-comment">
         <%= render 'public/comments/form', post: @post, comment: @comment %>
