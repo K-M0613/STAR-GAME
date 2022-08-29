@@ -37,7 +37,11 @@
           <% @posts.each do |post| %>
           <tr>
             <td>
-              <%= image_tag post.user.get_profile_image, size:'50x50' %>
+            <% if post.user.profile_image.attached? %>
+              <%= image_tag post.user.profile_image, size: "50x50" %>
+            <% else %>
+              <%= image_tag 'no_image.jpg', size: "50x50" %>
+            <% end %>
             </td>
             <td><%= post.user.nickname %></td>
             <td>

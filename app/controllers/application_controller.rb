@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
       root_path
     end
   end
+  
+  add_flash_types :success, :info, :warning, :danger
 
   private
     def configure_permitted_parameters

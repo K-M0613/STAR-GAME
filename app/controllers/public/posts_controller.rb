@@ -8,7 +8,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_path, notice: "投稿完了しました:)"
+      redirect_to post_path(@post), notice: "投稿完了しました"
     else
       render :new
     end
@@ -53,14 +53,14 @@ class Public::PostsController < ApplicationController
       end
       @keyword = params[:keyword]
     else
-      redirect_to request.referer
+      redirect_to request.referer, notice: "キーワードを入力してください"
     end
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: "削除しました。"
+    redirect_to posts_path, notice: "投稿を削除しました"
   end
 
   private

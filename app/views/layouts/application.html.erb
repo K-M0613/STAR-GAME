@@ -19,6 +19,12 @@
     <% else %>
       <%= render 'layouts/user_header' %>
     <% end %>
+    <%= render 'public/shared/flash_message' %>
+    <!--<div class="notifications">-->
+    <!--  <%# flash.each do |key, value| %>-->
+    <!--    <%#= content_tag(:div, value, class: key) %>-->
+    <!--  <%# end %>-->
+    <!--</div>-->
     <main><%= yield %></main>
     <footer class="footer border-top">
       <p>Copyright © StarGame Inc. All Rights Reserved.</p>

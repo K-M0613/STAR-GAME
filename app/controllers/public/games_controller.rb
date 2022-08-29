@@ -4,7 +4,7 @@ class Public::GamesController < ApplicationController
     if params[:keyword].present?
       @games = RakutenWebService::Books::Game.search(title: params[:keyword])
     else
-      redirect_to request.referer
+      redirect_to request.referer, notice: "キーワードを入力してください"
     end
   end
 end
