@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :baria_user, only: [:edit, :destroy, :update]
   def new
     @post = Post.new
   end
@@ -38,6 +39,21 @@ class Public::PostsController < ApplicationController
     @comments = @post.comments
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    if @post.update(post_params)
+      redirect_to post_path, notice: "投稿内容を更新しました"
+    else
+      flash[:notice] = "更新できませんでした"
+      render :edit
+    end
+  end
+
   def search
     if params[:keyword].present?
       if params[:key_ascending] == "created_at asc"
@@ -64,7 +80,14 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
     def post_params
       params.require(:post).permit(:purpose, :body, :title, :star, :user_id, tag_ids: [],)
+    end
+
+    def baria_user
+      unless Post.find(params[:id]).user.id.to_i == current_user.id
+          redirect_to my_page_path(current_user)
+      end
     end
 end

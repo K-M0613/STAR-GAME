@@ -52,6 +52,7 @@
         <tr>
           <th>
             <% if @post.user == current_user %>
+              <%= link_to "編集", edit_post_path, class: 'btn-sm btn-primary' %>
               <%= link_to "削除", post_path, method: :delete, class: 'btn-sm btn-danger' %>
             <% end %>
           </th>

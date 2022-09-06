@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
-    resources :posts, only: [:new, :index, :show, :create, :destroy] do
+    resources :posts, only: [:new, :index, :show, :edit, :update, :create, :destroy] do
        resources :comments, only: [:create, :destroy]
        resource :book_marks, only: [:index, :create, :destroy]
        get :search, on: :collection
