@@ -12,7 +12,7 @@
           %>
           <% end %>
           <%= form_with url: search_admin_posts_path, local: true, method: :get do |f| %>
-            <%= select_tag :key_ascending, options_for_select("新しい順": "created_at asc", "古い順": "created_at desc", "高評価順": "star desc", "低評価順": "star asc"), include_blanc: true %>
+            <%= select_tag :key_ascending, options_for_select("新しい順": "created_at desc", "古い順": "created_at asc", "高評価順": "star desc", "低評価順": "star asc"), include_blanc: true %>
             <%= f.text_field :keyword %>
             <%= f.submit "検索" %>
         <% end %>
