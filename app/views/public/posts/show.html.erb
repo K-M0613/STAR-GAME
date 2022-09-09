@@ -4,9 +4,16 @@
       <table class="table table-bordered border-primary">
         <tr>
           <% if @post.user.profile_image.attached? %>
-            <%= image_tag @post.user.profile_image, size: "100x100" %>
+            <%= image_tag @post.user.profile_image, size: "50x50", class: "rounded-circle mb-3" %>
           <% else %>
-            <%= image_tag 'no_image.jpg', size: "100x100" %>
+            <%= image_tag 'no_image.jpg', size: "50x50", class: "rounded-circle mb-3" %>
+          <% end %>
+        </tr><br>
+        <tr>
+          <% if @post.image.attached? %>
+            <%= image_tag @post.image, size: "100x100", class: 'mb-3' %>
+          <% else %>
+            <%= image_tag 'no_images.jpg', size: "100x100", class: 'mb-3' %>
           <% end %>
         </tr>
         <tr>

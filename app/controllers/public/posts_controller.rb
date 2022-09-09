@@ -82,7 +82,7 @@ class Public::PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:purpose, :body, :title, :star, :user_id, tag_ids: [],)
+      params.require(:post).permit(:purpose, :body, :title, :star, :user_id, :image, tag_ids: [],)
     end
 
     def baria_user

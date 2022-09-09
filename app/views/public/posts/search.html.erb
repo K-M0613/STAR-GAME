@@ -6,6 +6,7 @@
         <tr>
           <th style="background-color: #8EB8FF;"></th>
           <th style="background-color: #8EB8FF;">投稿者</th>
+          <th style="background-color: #8EB8FF;">商品画像</th>
           <th style="background-color: #8EB8FF;">商品名</th>
           <th style="background-color: #8EB8FF;">評価</th>
           <th style="background-color: #8EB8FF;">タグ</th>
@@ -25,6 +26,13 @@
           <td>
             <%= link_to my_page_path(post.user_id) do %>
               <%= post.user.nickname %>
+            <% end %>
+          </td>
+          <td>
+            <% if post.image.attached? %>
+              <%= image_tag post.image, size: "100x100" %>
+            <% else %>
+              <%= image_tag 'no_images.jpg', size: "100x100" %>
             <% end %>
           </td>
           <td>
