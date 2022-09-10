@@ -15,6 +15,17 @@ class Admin::PostsController < ApplicationController
       @posts = params[:tag_id].present? ? Tag.find(params[:tag_id]).posts : Post.all
       @posts = @posts.page(params[:page]).per(10)
     end
+    
+    if params[:tag_ids]
+      @posts = []
+      params[:tag_ids].each do |key, value|
+        if value == "1"
+           @tag_list = Tag.find_by(name: key).posts
+           @posts = @posts.empty? ? @tag_list : @posts & @tag_list
+           @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(10)
+        end
+      end
+    end
   end
 
   def show
