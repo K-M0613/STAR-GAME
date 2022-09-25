@@ -11,6 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2022_08_13_134304) do
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -109,7 +110,7 @@ ActiveRecord::Schema.define(version: 2022_08_13_134304) do
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", null: false
     t.integer "gender", default: 0, null: false
-    t.string "birth_day", null: false
+    t.date "birth_day"
     t.boolean "is_delete", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

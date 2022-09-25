@@ -23,7 +23,8 @@
 
     <div class="box-birthday">
       <%= f.label :birth_day, "生年月日" %><br />
-      <%= f.text_field :birth_day, autofocus: true, autocomplete: "birth_day", placeholder: "例：2000/01/01" %>
+      <%= f.date_select :birth_day, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year), default: Date.new(1989, 1, 1) %>
+      <%= f.hidden_field :birth_day %>
     </div>
 
     <div class="box-password">

@@ -12,7 +12,9 @@
   <tr>
     <th><%= user.gender %></th>
   </tr>
-  <tr>
-    <th><%= user.birth_day %></th>
-  </tr>
+  <% if user.nickname != "guestuser" %>
+    <tr>
+      <th><%= user.birth_day %></th>
+    </tr>
+  <% end %>
 </table>

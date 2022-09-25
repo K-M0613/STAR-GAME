@@ -21,8 +21,7 @@ class User < ApplicationRecord
   def self.guest
     user = find_or_create_by(nickname: "guestuser",
                               email: "guest@example.com",
-                              gender: 0,
-                              birth_day: "none")
+                              gender: 0)
     user.password = SecureRandom.urlsafe_base64
     user.is_delete = false
     user.save
